@@ -242,6 +242,10 @@ body {
           font-size: 8rem;
         }
       }
+      .content-picture {
+        display: flex;
+        gap: 1rem;
+      }
       .card-group {
         display: flex;
         justify-content: center;
