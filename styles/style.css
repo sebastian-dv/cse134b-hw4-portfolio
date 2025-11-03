@@ -261,7 +261,12 @@ body {
         gap: 2rem;
       }
     }
-    main#contact { }
+    main#contact {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
