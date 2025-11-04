@@ -11,8 +11,13 @@
 
   --header-height: 10vh;
 
+  color-scheme: light dark;
+
   --main-purple: #9b9be7;
   --light-purple: #d9d9f6;
+
+  --background-dark: #282828;
+  --background-light: white;
 
   --font-header: "Roboto Mono", Arial, sans-serif;
   --font-subheader: "Asap", Arial, sans-serif;
@@ -37,12 +42,14 @@
 }
 
 body {
+  background-color: light-dark(white, #282828);
+  color: light-dark(black, #ebdbb2);
   font-family: var(--font-body, sans-serif);
   header {
     display: flex;
     flex-direction: column;
     min-height: var(--header-height);
-    background-color: var(--light-purple, #d9d9f6);
+    background-color: light-dark(var(--light-purple, #d9d9f6), #98971a);
     padding: var(--page-padding-y, 3vh) var(--page-padding-x, 3vw);
     justify-content: space-between;
     #header-top {
@@ -71,7 +78,7 @@ body {
           display: block;
           padding-top: 1rem;
           text-decoration: none;
-          color: black;
+          color: light-dark(black, #ebdbb2);
           width: 100%;
           text-align: center;
         }
@@ -110,9 +117,9 @@ body {
       }
     }
     .card {
-      background-color: white;
+      background-color: light-dark(white, #928374);
       border-radius: var(--border-radius, 0.5rem);
-      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) lightgray;
+      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) light-dark(lightgray, gray);
       padding: 2rem;
       animation: fadeIn 0.6s ease-out forwards;
       hr {
@@ -178,8 +185,8 @@ body {
         margin-top: 1rem;
         width: 100%;
         padding: 0.6rem 0;
-        color: white;
-        background-color: black;
+        color: light-dark(white, #ebdbb2);
+        background-color: light-dark(black, #d65d0e);
         border: none;
         border-radius: var(--border-radius, 0.5rem);
       }
@@ -219,9 +226,9 @@ body {
           display: flex;
           gap: 1rem;
           a {
-            color: black;
+            color: light-dark(black, #ebdbb2);
             text-decoration: none;
-            background-color: white;
+            background-color: light-dark(white, #b8bb26);
             padding: 0.5rem 1rem 0.2rem;
             border-radius: var(--border-radius, 0.5rem);
           }
@@ -230,7 +237,7 @@ body {
             color: white;
           }
           a:active {
-            background-color: var(--main-purple, #9b9be7);
+            background-color: light-dark(var(--main-purple, #9b9be7), #689d6a);
             color: white;
           }
         }
