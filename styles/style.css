@@ -185,6 +185,16 @@ body {
         padding: 0.3rem;
         resize: none;
       }
+
+      input:focus,
+      textarea:focus {
+        outline: 2px solid #d65d0e;
+      }
+      input:user-invalid,
+      textarea:user-invalid {
+        border-color: #fb4935;
+      }
+
       button {
         margin-top: 1rem;
         width: 100%;
