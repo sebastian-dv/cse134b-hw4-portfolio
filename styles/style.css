@@ -102,10 +102,15 @@ body {
     h2, h3 {
       font-family: var(--font-subheader, sans-serif);
     }
+    h2 {
+      color: #98971a;
+    }
+    h3 {
+      color: #d79921;
+    }
     .card {
-      background-color: light-dark(white, #928374);
+      background-color: light-dark(white, #504945);
       border-radius: var(--border-radius, 0.5rem);
-      box-shadow: 0 0 var(--shadow-blur, 0.3rem) var(--shadow-spread, 0.2rem) light-dark(lightgray, gray);
       padding: 2rem;
       animation: fadeIn 0.6s ease-out forwards;
       hr {
