@@ -188,7 +188,7 @@ body {
 
       input:focus,
       textarea:focus {
-        outline: 2px solid #d65d0e;
+        outline: 2px solid #b8bb26;
       }
       input:user-invalid,
       textarea:user-invalid {
