@@ -13,11 +13,16 @@
 
   color-scheme: light dark;
 
-  --main-purple: #9b9be7;
-  --light-purple: #d9d9f6;
-
-  --background-dark: #282828;
-  --background-light: white;
+  --background-color: light-dark(white, #282828);
+  --header-color: light-dark(#83a598, #98971a);
+  --header-text-color: light-dark(white, white);
+  --nav-color: light-dark(#458588, #b8bb26);
+  --nav-active-color: light-dark(white, #9b9be7);
+  --nav-text-active-color: light-dark(black, white);
+  --text-color: light-dark(black, #ebdbb2);
+  --h2-color: light-dark(#458588, #98971a);
+  --h3-color: light-dark(#076678, #d79921);
+  --card-color: light-dark(#e4e5f1, #504945);
 
   --font-header: "Roboto Mono", Arial, sans-serif;
   --font-subheader: "Asap", Arial, sans-serif;
@@ -42,8 +47,8 @@
 }
 
 body {
-  background-color: light-dark(white, #282828);
-  color: light-dark(black, #ebdbb2);
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-family: var(--font-body, sans-serif);
   display: flex;
   flex-direction: column;
@@ -52,7 +57,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: var(--header-height);
-    background-color: light-dark(var(--light-purple, #d9d9f6), #98971a);
+    background-color: var(--header-color);
+    color: var(--header-text-color);
     padding: var(--page-padding-y, 3vh) var(--page-padding-x, 3vw);
     justify-content: space-between;
     #header-top {
@@ -78,10 +84,10 @@ body {
           list-style: none;
         }
         a {
+          color: var(--header-text-color);
           display: block;
           padding-top: 1rem;
           text-decoration: none;
-          color: light-dark(black, #ebdbb2);
           width: 100%;
           text-align: center;
         }
@@ -103,13 +109,13 @@ body {
       font-family: var(--font-subheader, sans-serif);
     }
     h2 {
-      color: #98971a;
+      color: var(--h2-color);
     }
     h3 {
-      color: #d79921;
+      color: var(--h3-color);
     }
     .card {
-      background-color: light-dark(white, #504945);
+      background-color: var(--card-color);
       border-radius: var(--border-radius, 0.5rem);
       padding: 2rem;
       animation: fadeIn 0.6s ease-out forwards;
@@ -195,11 +201,11 @@ body {
 
       input:focus,
       textarea:focus {
-        outline: 2px solid #b8bb26;
+        outline: 2px solid light-dark(#458588, #b8bb26);
       }
       input:user-invalid,
       textarea:user-invalid {
-        border-color: #fb4935;
+        border-color: light-dark(#d65d0e, #fb4935);
       }
 
       button {
@@ -207,7 +213,7 @@ body {
         width: 100%;
         padding: 0.6rem 0;
         color: light-dark(white, #ebdbb2);
-        background-color: light-dark(black, #d65d0e);
+        background-color: light-dark(#b16286, #d65d0e);
         border: none;
         border-radius: var(--border-radius, 0.5rem);
       }
@@ -229,7 +235,8 @@ body {
     justify-content: center;
     width: 100%;
     padding: 2vh 2vw;
-    background-color: light-dark(var(--light-purple), #98971a);
+    background-color: var(--header-color);
+    color: var(--header-text-color);
   }
 }
 
@@ -255,19 +262,18 @@ body {
           display: flex;
           gap: 1rem;
           a {
-            color: light-dark(black, #ebdbb2);
             text-decoration: none;
-            background-color: light-dark(white, #b8bb26);
+            background-color: var(--nav-color);
             padding: 0.5rem 1rem 0.2rem;
             border-radius: var(--border-radius, 0.5rem);
           }
           a:hover {
-            background-color: gray;
+            background-color: light-dark(lightgrey, grey);
             color: white;
           }
           a:active {
-            background-color: light-dark(var(--main-purple, #9b9be7), #689d6a);
-            color: white;
+            background-color: var(--nav-active-color);
+            color: var(--nav-text-active-color);
           }
         }
       }
