@@ -31,7 +31,7 @@
   <hr>
 
   <main id="contact">
-    <form class="card" action="https://httpbin.org/post" method="post">
+    <form class="card" action="https://httpbin.org/post" method="post" novalidate>
       <fieldset>
         <legend>
           <h2>Send me a message</h2>
@@ -61,6 +61,7 @@
           <textarea id="message" name="message" rows="10" cols="24" maxlength="300" required></textarea>
         </div>
         <input type="hidden" name="possible_bot" value="true">
+        <input type="hidden" name="form_errors" id="form_error_list" value="">
         <button type="submit">Submit</button>
         <output id="form-error"></output>
         <output id="form-info"></output>
@@ -120,6 +121,7 @@
   </footer>
 
   <script defer>
+    let form;
     let inputName;
     let inputEmail;
     let inputSubject;
@@ -131,6 +133,7 @@
     let form_errors = [];
 
     function loadHandler() {
+      form = document.querySelector('form');
       inputName = document.querySelector('input#name');
       inputEmail = document.querySelector('input#email');
       inputSubject = document.querySelector('input#subject');
@@ -144,15 +147,24 @@
       inputEmail.addEventListener('blur', validateEmail);
       inputSubject.addEventListener('input', validateSubject);
       inputMessage.addEventListener('input', updateCounter);
+      form.addEventListener('submit', (e) => validateSubmit(e));
     }
 
     function showError(msg) {
       errorOut.innerText = msg;
       errorOut.classList.add('show');
-      console.log('showError!');
 
       setTimeout(() => {
         errorOut.classList.remove('show');
+      }, 3000);
+    }
+
+    function showInfo(msg) {
+      infoOut.innerText = msg;
+      infoOut.classList.add('show');
+
+      setTimeout(() => {
+        infoOut.classList.remove('show');
       }, 3000);
     }
 
@@ -194,6 +206,36 @@
       } else {
         messageCounter.classList.remove('near-limit');
       }
+    }
+
+    function validateField(el) {
+      console.log('checking validity: ' + el);
+      if (!el.checkValidity()) {
+        console.log('invalid: ' + el);
+        form_errors.push({
+          field: el.name,
+          value: el.value,
+          error: el.validationMessage || 'invalid input'
+        });
+      }
+    }
+
+    function validateSubmit(event) {
+      let prev_errors = form_errors.length;
+      validateField(inputName);
+      validateField(inputEmail);
+      validateField(inputSubject);
+      validateField(inputMessage);
+      let curr_errors = form_errors.length;
+      console.log('errors before: ' + prev_errors);
+      console.log('errors now: ' + curr_errors);
+      if (curr_errors === prev_errors) {
+        showInfo("Success");
+      } else {
+        showError("Fix invalid fields");
+        event.preventDefault();
+      }
+      document.querySelector('#form_error_list').value = JSON.stringify(form_errors);
     }
 
     window.addEventListener('DOMContentLoaded', loadHandler);
