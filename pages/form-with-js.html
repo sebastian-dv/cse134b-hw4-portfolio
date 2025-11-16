@@ -38,20 +38,26 @@
         </legend>
         <hr>
         <div>
-          <label for="name">Name</label><br>
+          <label for="name">Name</label>
+          <br>
           <input type="text" name="name" id="name" minlength="2" maxlength="30" pattern="[A-Za-z\s\-]+" required>
         </div>
         <div>
-          <label for="email">Email</label><br>
+          <label for="email">Email</label>
+          <br>
           <input type="email" name="email" id="email" minlength="2" maxlength="30" required>
         </div>
         <div>
-          <label for="subject">Subject</label><br>
+          <label for="subject">Subject</label>
+          <br>
           <input type="text" name="subject" id="subject" minlength="2" maxlength="30" pattern="[A-Za-z0-9\s\-]+"
             required>
         </div>
         <div>
-          <label for="message">Message</label><br>
+          <div class="label-row">
+            <label for="message">Message</label>
+            <output id="char-count">0/300</output>
+          </div>
           <textarea id="message" name="message" rows="10" cols="24" maxlength="300" required></textarea>
         </div>
         <input type="hidden" name="possible_bot" value="true">
@@ -118,6 +124,7 @@
     let inputEmail;
     let inputSubject;
     let inputMessage;
+    let messageCounter;
 
     let errorOut;
     let infoOut;
@@ -128,6 +135,7 @@
       inputEmail = document.querySelector('input#email');
       inputSubject = document.querySelector('input#subject');
       inputMessage = document.querySelector('textarea#message');
+      messageCounter = document.querySelector('output#char-count');
 
       errorOut = document.querySelector('output#form-error');
       infoOut = document.querySelector('output#form-info');
@@ -135,10 +143,11 @@
       inputName.addEventListener('input', validateName);
       inputEmail.addEventListener('blur', validateEmail);
       inputSubject.addEventListener('input', validateSubject);
+      inputMessage.addEventListener('input', updateCounter);
     }
 
     function showError(msg) {
-      errorOut.innerHTML = msg;
+      errorOut.innerText = msg;
       errorOut.classList.add('show');
       console.log('showError!');
 
@@ -162,6 +171,13 @@
       }
     }
 
+    function validateEmail() {
+      if (inputEmail.validity.typeMismatch) {
+        showError('Invalid email');
+        flash(inputEmail);
+      }
+    }
+
     function validateSubject() {
       if (inputSubject.validity.patternMismatch) {
         showError('Illegal character in subject field');
@@ -169,10 +185,14 @@
       }
     }
 
-    function validateEmail() {
-      if (inputEmail.validity.typeMismatch) {
-        showError('Invalid email');
-        flash(inputEmail);
+    function updateCounter() {
+      let length = inputMessage.value.length;
+      console.log('message length: ' + length);
+      messageCounter.innerText = length + '/300';
+      if (length > 250) {
+        messageCounter.classList.add('near-limit');
+      } else {
+        messageCounter.classList.remove('near-limit');
       }
     }
 

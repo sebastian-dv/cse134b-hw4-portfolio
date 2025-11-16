@@ -211,6 +211,15 @@ body {
         border-color: light-dark(#d65d0e, #fb4935);
       }
 
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .near-limit {
+        color: light-dark(#b16286, #d65d0e);
+      }
+
       #form-error, #form-info {
         position: absolute;
         display: block;
